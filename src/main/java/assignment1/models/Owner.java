@@ -1,22 +1,32 @@
 package assignment1.models;
 
+import assignment1.TimeZoneAdaptor;
+
 import javax.xml.bind.annotation.*;
-import java.time.LocalDateTime;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.math.BigInteger;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
-// order of the fields in XML
-// @XmlType(propOrder = {"price", "name"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Owner {
 
     //region Private Properties
 
+    @XmlID
     @XmlAttribute
-    private int ownerId;
+    private String ownerId;
+    @XmlAttribute
     private String name;
-    private LocalDateTime birthdate;
-    private String telephone;
+    @XmlJavaTypeAdapter(TimeZoneAdaptor.class)
+    @XmlAttribute
+    private ZonedDateTime birthdate;
+    @XmlAttribute
+    private BigInteger telephone;
+    @XmlAttribute
     private String address;
+    @XmlIDREF
+    @XmlElement(name="pet")
     private ArrayList<Pet> pets;
 
     //endregion Private Properties
@@ -25,60 +35,24 @@ public class Owner {
 
     public Owner() {
         this.pets = new ArrayList<>();
-        this.birthdate = LocalDateTime.now();
+        this.birthdate = ZonedDateTime.now();
     }
 
-    public Owner(int ownerId, String name, String telephone, String address) {
+    public Owner(String ownerId, String name, BigInteger telephone, String address) {
         this.ownerId = ownerId;
         this.name = name;
         this.telephone = telephone;
         this.address = address;
 
         this.pets = new ArrayList<>();
-        this.birthdate = LocalDateTime.now();
+        this.birthdate = ZonedDateTime.now();
     }
 
     //endregion Constructor
 
     //region Accessors
 
-    public int getOwnerId() {
-        return ownerId;
-    }
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getBirthdate() {
-        return birthdate;
-    }
-    public void setBirthdate(LocalDateTime birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getAddress() { return address; }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public ArrayList<Pet> getPets() { return pets; }
     public void setPets(ArrayList pets) { this.pets = pets; }
-    public void AddPet(Pet pet) { this.pets.add(pet); }
-
 
     //endregion Accessors
 
