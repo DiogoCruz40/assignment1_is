@@ -15,7 +15,15 @@ public class Marshalling_XML {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Data.class);
 
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//
+//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//            jaxbMarshaller.setProperty("com.sun.xml.bind.xmlDeclaration", false);
+//            jaxbMarshaller.setProperty("com.sun.xml.bind.xmlHeaders",
+//                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+//
+//            // output to a xml file
+//            jaxbMarshaller.marshal(data, new File("Ex1.xml"));
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.setProperty("com.sun.xml.bind.xmlDeclaration", false);
