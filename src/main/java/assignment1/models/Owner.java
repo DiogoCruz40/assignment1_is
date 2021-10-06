@@ -25,15 +25,17 @@ public class Owner {
 
     public Owner() {
         this.pets = new ArrayList<>();
+        this.birthdate = LocalDateTime.now();
     }
 
-    public Owner(int ownerId, String name, LocalDateTime birthdate, String telephone, String address) {
+    public Owner(int ownerId, String name, String telephone, String address) {
         this.ownerId = ownerId;
         this.name = name;
-        this.birthdate = birthdate;
         this.telephone = telephone;
         this.address = address;
+
         this.pets = new ArrayList<>();
+        this.birthdate = LocalDateTime.now();
     }
 
     //endregion Constructor
@@ -74,7 +76,9 @@ public class Owner {
     }
 
     public ArrayList<Pet> getPets() { return pets; }
+    public void setPets(ArrayList pets) { this.pets = pets; }
     public void AddPet(Pet pet) { this.pets.add(pet); }
+
 
     //endregion Accessors
 
