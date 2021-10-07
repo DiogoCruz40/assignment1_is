@@ -5,6 +5,7 @@ import assignment1.models.Owner;
 import assignment1.models.Pet;
 import assignment1.xml.Marshalling_XML;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,11 +14,11 @@ public class Program {
     public static Data data;
 
     public static void main(String[] args) {
-        data = new Data(new ArrayList<Owner>());
+        data = new Data(new ArrayList<Owner>(), new ArrayList<Pet>());
 
         seed(new Random(), 10);
 
-        new Marshalling_XML().marshal(data);
+        //new Marshalling_XML().marshal(data);
     }
 
     public static void seed(Random r, int numRecords) {
@@ -29,16 +30,16 @@ public class Program {
 
         for (int i = 0; i < numOwners; i++) {
             Owner newOwner = new Owner(
-                    ++ownerIdentity,
+                    String.valueOf(++ownerIdentity),
                     randomStringGenerator(r,50),
-                    randomStringGenerator(r, 12),
+                    getRandomBigNumber(r, 12),
                     randomStringGenerator(r, 1000));
 
             ArrayList<Pet> petList = new ArrayList<Pet>();
             for (int j = 0; j < r.nextInt(numOwners/2); j++) {
                 Pet pet = new Pet(
-                        ++petIdentity,
-                        newOwner.getOwnerId(),
+                        String.valueOf(++petIdentity),
+                        newOwner,
                         randomStringGenerator(r, 50),
                         randomStringGenerator(r, 10),
                         r.nextFloat(),
@@ -47,6 +48,7 @@ public class Program {
                 );
 
                 petList.add(pet);
+                data.addPet(pet);
             }
 
             newOwner.setPets(petList);
@@ -71,5 +73,12 @@ public class Program {
                 .toString();
 
         return generatedString;
+    }
+
+    public static BigInteger getRandomBigNumber(Random r, int digCount) {
+        StringBuilder sb = new StringBuilder(digCount);
+        for(int i=0; i < digCount; i++)
+            sb.append((char)('0' + r.nextInt(10)));
+        return new BigInteger(sb.toString());
     }
 }

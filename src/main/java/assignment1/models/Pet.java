@@ -7,9 +7,12 @@ public class Pet {
 
     //region Private Properties
 
+    @XmlID
     @XmlAttribute
-    private int petId;
-    private int ownerId;
+    private String petId;
+    @XmlIDREF
+    private Owner owner;
+    @XmlAttribute
     private String name;
     private String gender;
     private float weight;
@@ -23,9 +26,9 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(int petId, int ownerId, String name, String gender, float weight, String birthdate, String description) {
+    public Pet(String petId, Owner owner, String name, String gender, float weight, String birthdate, String description) {
         this.petId = petId;
-        this.ownerId = ownerId;
+        this.owner = owner;
         this.name = name;
         this.gender = gender;
         this.weight = weight;
@@ -37,51 +40,6 @@ public class Pet {
     //endregion Constructor
 
     //region Accessors
-
-    public int getPetId() {
-        return petId;
-    }
-    public void setPetId(int petId) {
-        this.petId = petId;
-    }
-
-    public int getOwnerId() { return ownerId;}
-    public void setOwnerId(int ownerId) {this.ownerId = ownerId;}
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public float getWeight() {
-        return weight;
-    }
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     //endregion Accessors
 }
