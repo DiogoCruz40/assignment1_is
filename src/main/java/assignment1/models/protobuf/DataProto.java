@@ -15,20 +15,20 @@ public final class DataProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Data_proto_descriptor;
+    internal_static_protobuf_Data_proto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Data_proto_fieldAccessorTable;
+      internal_static_protobuf_Data_proto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Data_proto_Owner_proto_descriptor;
+    internal_static_protobuf_Data_proto_Owner_proto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Data_proto_Owner_proto_fieldAccessorTable;
+      internal_static_protobuf_Data_proto_Owner_proto_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Data_proto_Owner_proto_Pet_proto_descriptor;
+    internal_static_protobuf_Data_proto_Owner_proto_Pet_proto_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Data_proto_Owner_proto_Pet_proto_fieldAccessorTable;
+      internal_static_protobuf_Data_proto_Owner_proto_Pet_proto_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -38,42 +38,43 @@ public final class DataProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nData.proto\032\037google/protobuf/timestamp." +
-      "proto\"\237\003\n\nData_proto\022\'\n\006owners\030\001 \003(\0132\027.D" +
-      "ata_proto.Owner_proto\032\347\002\n\013Owner_proto\022\017\n" +
-      "\007ownerId\030\001 \002(\005\022\014\n\004name\030\002 \002(\t\022-\n\tbirthdat" +
-      "e\030\003 \001(\0132\032.google.protobuf.Timestamp\022\021\n\tt" +
-      "elephone\030\004 \001(\005\022\017\n\007address\030\005 \001(\t\022/\n\004pets\030" +
-      "\006 \003(\0132!.Data_proto.Owner_proto.Pet_proto" +
-      "\032\264\001\n\tPet_proto\022\r\n\005petId\030\001 \002(\005\022&\n\005owner\030\002" +
-      " \002(\0132\027.Data_proto.Owner_proto\022\014\n\004name\030\003 " +
-      "\002(\t\022\016\n\006gender\030\004 \001(\t\022\016\n\006weight\030\005 \001(\002\022-\n\tb" +
-      "irthdate\030\006 \001(\0132\032.google.protobuf.Timesta" +
-      "mp\022\023\n\013description\030\007 \001(\tB*\n\033assignment1.m" +
-      "odels.protobufB\tDataProtoP\001"
+      "\n\nData.proto\022\010protobuf\032\037google/protobuf/" +
+      "timestamp.proto\"\272\003\n\nData_proto\0220\n\006owners" +
+      "\030\001 \003(\0132 .protobuf.Data_proto.Owner_proto" +
+      "\032\371\002\n\013Owner_proto\022\017\n\007ownerId\030\001 \002(\t\022\014\n\004nam" +
+      "e\030\002 \002(\t\022-\n\tbirthdate\030\003 \001(\0132\032.google.prot" +
+      "obuf.Timestamp\022\021\n\ttelephone\030\004 \001(\005\022\017\n\007add" +
+      "ress\030\005 \001(\t\0228\n\004pets\030\006 \003(\0132*.protobuf.Data" +
+      "_proto.Owner_proto.Pet_proto\032\275\001\n\tPet_pro" +
+      "to\022\r\n\005petId\030\001 \002(\t\022/\n\005owner\030\002 \002(\0132 .proto" +
+      "buf.Data_proto.Owner_proto\022\014\n\004name\030\003 \002(\t" +
+      "\022\016\n\006gender\030\004 \001(\t\022\016\n\006weight\030\005 \001(\002\022-\n\tbirt" +
+      "hdate\030\006 \001(\0132\032.google.protobuf.Timestamp\022" +
+      "\023\n\013description\030\007 \001(\tB*\n\033assignment1.mode" +
+      "ls.protobufB\tDataProtoP\001"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
-    internal_static_Data_proto_descriptor =
+    internal_static_protobuf_Data_proto_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_Data_proto_fieldAccessorTable = new
+    internal_static_protobuf_Data_proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Data_proto_descriptor,
+        internal_static_protobuf_Data_proto_descriptor,
         new java.lang.String[] { "Owners", });
-    internal_static_Data_proto_Owner_proto_descriptor =
-      internal_static_Data_proto_descriptor.getNestedTypes().get(0);
-    internal_static_Data_proto_Owner_proto_fieldAccessorTable = new
+    internal_static_protobuf_Data_proto_Owner_proto_descriptor =
+      internal_static_protobuf_Data_proto_descriptor.getNestedTypes().get(0);
+    internal_static_protobuf_Data_proto_Owner_proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Data_proto_Owner_proto_descriptor,
+        internal_static_protobuf_Data_proto_Owner_proto_descriptor,
         new java.lang.String[] { "OwnerId", "Name", "Birthdate", "Telephone", "Address", "Pets", });
-    internal_static_Data_proto_Owner_proto_Pet_proto_descriptor =
-      internal_static_Data_proto_Owner_proto_descriptor.getNestedTypes().get(0);
-    internal_static_Data_proto_Owner_proto_Pet_proto_fieldAccessorTable = new
+    internal_static_protobuf_Data_proto_Owner_proto_Pet_proto_descriptor =
+      internal_static_protobuf_Data_proto_Owner_proto_descriptor.getNestedTypes().get(0);
+    internal_static_protobuf_Data_proto_Owner_proto_Pet_proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Data_proto_Owner_proto_Pet_proto_descriptor,
+        internal_static_protobuf_Data_proto_Owner_proto_Pet_proto_descriptor,
         new java.lang.String[] { "PetId", "Owner", "Name", "Gender", "Weight", "Birthdate", "Description", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }

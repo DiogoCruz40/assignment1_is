@@ -12,25 +12,22 @@ message Data_proto {
 
   repeated Owner_proto owners = 1;
 
-message Owner_proto {
-  required int32  ownerId = 1;
-  required string name = 2;
-  optional google.protobuf.Timestamp birthdate = 3;
-  optional int32 telephone = 4;
-  optional string address = 5;
-  repeated Pet_proto pets = 6;
+  message Owner_proto {
+    required string  ownerId = 1;
+    required string name = 2;
+    optional google.protobuf.Timestamp birthdate = 3;
+    optional int32 telephone = 4;
+    optional string address = 5;
+    repeated Pet_proto pets = 6;
 
-  message Pet_proto {
-    required int32 petId = 1;
-    required Owner_proto owner = 2;
-    required string name = 3;
-    optional string gender = 4;
-    optional float weight = 5;
-    optional google.protobuf.Timestamp birthdate = 6;
-    optional string description = 7;
+    message Pet_proto {
+      required string petId = 1;
+      required Owner_proto owner = 2;
+      required string name = 3;
+      optional string gender = 4;
+      optional float weight = 5;
+      optional google.protobuf.Timestamp birthdate = 6;
+      optional string description = 7;
+    }
   }
-}
-
-
-
 }

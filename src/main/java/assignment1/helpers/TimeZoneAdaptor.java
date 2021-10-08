@@ -1,21 +1,22 @@
 package assignment1.helpers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TimeZoneAdaptor extends XmlAdapter<String, ZonedDateTime> {
+public class TimeZoneAdaptor extends XmlAdapter<String, LocalDateTime> {
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
 
     @Override
-    public ZonedDateTime unmarshal(String v) throws Exception {
-        ZonedDateTime parse = ZonedDateTime.parse(v, dateTimeFormatter);
+    public LocalDateTime unmarshal(String v) throws Exception {
+        LocalDateTime parse = LocalDateTime.parse(v, dateTimeFormatter);
         return parse;
     }
 
     @Override
-    public String marshal(ZonedDateTime v) throws Exception {
+    public String marshal(LocalDateTime v) throws Exception {
         return dateTimeFormatter.format(v);
     }
 }

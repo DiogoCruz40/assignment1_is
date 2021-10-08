@@ -6,19 +6,25 @@ public class CsvRowInfo {
     private int numPets;
     private double xmlMarshallingTime;
     private double xmlUnmarshallingTime;
-    private long bytes;
+    private long bytesXmlFile;
+    private double protobufWritingTime;
+    private double protobufReadingTime;
+    private long bytesBinFile;
 
     public CsvRowInfo() {
     }
 
     public static String[] getRowHeader() {
         return new String[] {
-                String.valueOf("seed"),
-                String.valueOf("numOwners"),
-                String.valueOf("numPets"),
-                String.valueOf("xmlMarshallingTime(ms)"),
-                String.valueOf("xmlUnmarshallingTime(ms)"),
-                String.valueOf("size(bytes)"),
+                String.valueOf("Seed"),
+                String.valueOf("NumOwners"),
+                String.valueOf("NumPets"),
+                String.valueOf("Xml file Size (bytes)"),
+                String.valueOf("Bin file Size (bytes)"),
+                String.valueOf("Xml Marshalling (ms)"),
+                String.valueOf("Protobuf Writing (ms)"),
+                String.valueOf("Xml Unmarshalling (ms)"),
+                String.valueOf("Protobuf Reading (ms)"),
         };
     }
 
@@ -27,9 +33,12 @@ public class CsvRowInfo {
                 String.valueOf(this.seed),
                 String.valueOf(this.numOwners),
                 String.valueOf(this.numPets),
+                String.valueOf(this.bytesXmlFile),
+                String.valueOf(this.bytesBinFile),
                 String.valueOf(String.format("%.6f", this.xmlMarshallingTime)),
+                String.valueOf(String.format("%.6f", this.protobufWritingTime)),
                 String.valueOf(String.format("%.6f", this.xmlUnmarshallingTime)),
-                String.valueOf(this.bytes),
+                String.valueOf(String.format("%.6f", this.protobufReadingTime)),
         };
     }
 
@@ -73,11 +82,33 @@ public class CsvRowInfo {
         this.xmlUnmarshallingTime = (double) (end - start) / 1_000_000_000;
     }
 
-    public long getBytes() {
-        return bytes;
+    public long getBytesXmlFile() {
+        return bytesXmlFile;
     }
 
-    public void setBytes(long bytes) {
-        this.bytes = bytes;
+    public void setBytesXmlFile(long bytesXmlFile) {
+        this.bytesXmlFile = bytesXmlFile;
+    }
+
+    public long getBytesBinFile() {
+        return bytesBinFile;
+    }
+
+    public void setBytesBinFile(long bytesBinFile) {
+        this.bytesBinFile = bytesBinFile;
+    }
+
+    public void setProtobufWritingTime(long start, long end) {
+        this.protobufWritingTime = (double) (end - start) / 1_000_000_000;
+    }
+    public double getProtobufWritingTime() {
+        return protobufWritingTime;
+    }
+
+    public void setProtobufReadingTime(long start, long end) {
+        this.protobufReadingTime = (double) (end - start) / 1_000_000_000;
+    }
+    public double getProtobufReadingTime() {
+        return protobufReadingTime;
     }
 }

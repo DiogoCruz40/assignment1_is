@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/assignment1_jar</output-path>
     <root id="archive" name="assignment1.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/assignment1/helpers/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/assignment1/MANIFEST.MF" />
       </element>
       <element id="module-output" name="assignment1" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jvnet/staxex/stax-ex/1.8.1/stax-ex-1.8.1.jar" path-in-jar="/" />

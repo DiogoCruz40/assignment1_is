@@ -11,7 +11,7 @@ public class Data {
     @XmlElement(name="owner")
     private ArrayList<Owner> owners;
 
-    @XmlElement(name="pet")
+    //@XmlElement(name="pet")
     private ArrayList<Pet> pets;
 
     //endregion Private Properties

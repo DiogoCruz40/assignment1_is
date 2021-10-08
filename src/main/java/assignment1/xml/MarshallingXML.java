@@ -48,7 +48,7 @@ public class MarshallingXML {
 
         CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
         csvRowInfo.setXmlMarshallingTime(start, end);
-        csvRowInfo.setBytes(size);
+        csvRowInfo.setBytesXmlFile(size);
 
         // output to console
         //jaxbMarshaller.marshal(data, System.out);

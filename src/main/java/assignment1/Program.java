@@ -6,14 +6,20 @@ import assignment1.helpers.InstrumentationAgent;
 import assignment1.models.Data;
 import assignment1.models.Owner;
 import assignment1.models.Pet;
+import assignment1.models.protobuf.Data_proto;
 import assignment1.xml.MarshallingXML;
 
 import javax.xml.bind.JAXBException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,6 +27,7 @@ import java.util.Random;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.google.protobuf.Timestamp;
 
 public class Program {
 
@@ -44,6 +51,11 @@ public class Program {
             Path dataPath = Paths.get("./data");
             if (!Files.exists(dataPath)) {
                 Files.createDirectory(dataPath);
+            }
+
+            Path dataProtoPath = Paths.get("./dataProto");
+            if (!Files.exists(dataProtoPath)) {
+                Files.createDirectory(dataProtoPath);
             }
 
             Path resultsPath = Paths.get("./results");
@@ -76,7 +88,7 @@ public class Program {
 
             long seed = System.currentTimeMillis();
             for (int i = 0; i < 100; i++) {
-                Run(seed, 100);
+                Run(seed, 30);
                 seed = System.currentTimeMillis();
             }
 
@@ -106,11 +118,76 @@ public class Program {
 
         //region Protocol Buffers
 
+        String filepathProto = String.format("./dataProto/%d.bin", seed);
+        Data_proto dataProtoBuf = ConvertDataToProtoClasses();
 
+        FileOutputStream output = new FileOutputStream(filepathProto);
+        long start = System.nanoTime();
+        dataProtoBuf.writeTo(output);
+        long end = System.nanoTime();
+        output.close();
+        long size = Files.size(Paths.get(filepath));
+        logger.info(String.format("protoBuf.writeTo end.\nelapsedTime: %f ms\nsize: %d bytes", (double) (end - start) / 1_000_000_000, size));
+
+        csvRowInfo.setProtobufWritingTime(start, end);
+        csvRowInfo.setBytesBinFile(size);
+
+        start = System.nanoTime();
+        Data_proto dataProto = Data_proto.parseFrom(new FileInputStream(filepathProto));
+        end = System.nanoTime();
+        logger.info(String.format("protoBuf.parseFrom end.\nelapsedTime: %f ms\nsize: ", (double) (end - start) / 1_000_000_000));
+
+        csvRowInfo.setProtobufReadingTime(start, end);
 
         //endregion Protocol Buffers
 
         CsvBuilder.addNewLine(csvRowInfo.getRowData());
+    }
+
+    public static Data_proto ConvertDataToProtoClasses (){
+        Data_proto.Builder dataProto = Data_proto.newBuilder();
+
+        for (Owner owner: data.getOwners()) {
+            Data_proto.Owner_proto.Builder ownerProto = Data_proto.Owner_proto.newBuilder();
+
+            ownerProto.setOwnerId(owner.getOwnerId());
+            ownerProto.setName(owner.getName());
+
+            Instant instant = owner.getBirthdate().toInstant(ZoneOffset.UTC);
+            Timestamp timestamp = Timestamp.newBuilder()
+                    .setSeconds(instant.getEpochSecond())
+                    .setNanos(instant.getNano())
+                    .build();
+            ownerProto.setBirthdate(timestamp);
+
+            ownerProto.setTelephone(owner.getTelephone().intValue());
+            ownerProto.setAddress(owner.getAddress());
+
+            for (Pet pet : owner.getPets()) {
+                Data_proto.Owner_proto.Pet_proto.Builder petProto = Data_proto.Owner_proto.Pet_proto.newBuilder();
+
+                petProto.setPetId(pet.getPetId());
+                petProto.setName(pet.getName());
+                petProto.setOwner(ownerProto);
+                petProto.setGender(pet.getGender());
+                petProto.setWeight(pet.getWeight());
+
+                instant = pet.getBirthdate().toInstant(ZoneOffset.UTC);
+                timestamp = Timestamp.newBuilder()
+                        .setSeconds(instant.getEpochSecond())
+                        .setNanos(instant.getNano())
+                        .build();
+                petProto.setBirthdate(timestamp);
+
+                petProto.setDescription(pet.getDescription());
+
+                ownerProto.addPets(petProto);
+            }
+
+            dataProto.addOwners(ownerProto);
+        }
+
+        return dataProto.build();
     }
 
     public static CsvRowInfo getCsvRowInfo() {
@@ -143,7 +220,6 @@ public class Program {
                         randomStringGenerator(r, 50),
                         randomStringGenerator(r, 10),
                         r.nextFloat(),
-                        randomStringGenerator(r,10, 30),
                         randomStringGenerator(r, 100, 10000)
                 );
 
