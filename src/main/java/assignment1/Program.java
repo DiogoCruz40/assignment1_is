@@ -99,7 +99,7 @@ public class Program {
 
         MarshallingXML xml = new MarshallingXML();
         xml.marshal(data, filepath);
-        //printObjectSize(data);
+        printObjectSize(data);
         xml.unmarshal(filepath);
 
         //endregion Xml
