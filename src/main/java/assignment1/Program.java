@@ -41,6 +41,11 @@ public class Program {
             logger = Logger.getLogger(loggerName);
             FileHandler fh;
 
+            Path dataPath = Paths.get("./data");
+            if (!Files.exists(dataPath)) {
+                Files.createDirectory(dataPath);
+            }
+
             Path resultsPath = Paths.get("./results");
             if (!Files.exists(resultsPath)) {
                 Files.createDirectory(resultsPath);
