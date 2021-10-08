@@ -10,7 +10,7 @@ public class CsvBuilder {
     private static int count = 0;
 
     public static void addNewLine(String[] values) throws IOException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHH");
         String filepath = String.format("./results/results_%s.csv", ZonedDateTime.now().format(formatter));
 
         FileWriter pw = new FileWriter(filepath,true);

@@ -4,13 +4,14 @@ import assignment1.helpers.TimeZoneAdaptor;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Owner {
+public class Owner implements Serializable {
 
     //region Private Properties
 

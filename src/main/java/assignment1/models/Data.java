@@ -1,11 +1,12 @@
 package assignment1.models;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class Data {
+public class Data implements Serializable {
     //region Private Properties
 
     @XmlElement(name="owner")

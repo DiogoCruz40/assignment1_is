@@ -10,6 +10,8 @@ public class CsvRowInfo {
     private double protobufWritingTime;
     private double protobufReadingTime;
     private long bytesBinFile;
+    private long dataSizeXml;
+    private long dataSizeProtobuf;
 
     public CsvRowInfo() {
     }
@@ -25,6 +27,8 @@ public class CsvRowInfo {
                 String.valueOf("Protobuf Writing (ms)"),
                 String.valueOf("Xml Unmarshalling (ms)"),
                 String.valueOf("Protobuf Reading (ms)"),
+                String.valueOf("Size in memory (bytes) - XML"),
+                String.valueOf("Size in memory (bytes) - ProtoBuf"),
         };
     }
 
@@ -39,6 +43,8 @@ public class CsvRowInfo {
                 String.valueOf(String.format("%.6f", this.protobufWritingTime)),
                 String.valueOf(String.format("%.6f", this.xmlUnmarshallingTime)),
                 String.valueOf(String.format("%.6f", this.protobufReadingTime)),
+                String.valueOf(this.dataSizeXml),
+                String.valueOf(this.dataSizeProtobuf),
         };
     }
 
@@ -71,7 +77,7 @@ public class CsvRowInfo {
     }
 
     public void setXmlMarshallingTime(long start, long end) {
-        this.xmlMarshallingTime = (double) (end - start) / 1_000_000_000;
+        this.xmlMarshallingTime = (double) (end - start) / 1_000_000;
     }
 
     public double getXmlUnmarshallingTime() {
@@ -79,7 +85,7 @@ public class CsvRowInfo {
     }
 
     public void setXmlUnmarshallingTime(long start, long end) {
-        this.xmlUnmarshallingTime = (double) (end - start) / 1_000_000_000;
+        this.xmlUnmarshallingTime = (double) (end - start) / 1_000_000;
     }
 
     public long getBytesXmlFile() {
@@ -99,16 +105,32 @@ public class CsvRowInfo {
     }
 
     public void setProtobufWritingTime(long start, long end) {
-        this.protobufWritingTime = (double) (end - start) / 1_000_000_000;
+        this.protobufWritingTime = (double) (end - start) / 1_000_000;
     }
     public double getProtobufWritingTime() {
         return protobufWritingTime;
     }
 
     public void setProtobufReadingTime(long start, long end) {
-        this.protobufReadingTime = (double) (end - start) / 1_000_000_000;
+        this.protobufReadingTime = (double) (end - start) / 1_000_000;
     }
     public double getProtobufReadingTime() {
         return protobufReadingTime;
+    }
+
+    public long getDataSizeXml() {
+        return dataSizeXml;
+    }
+
+    public void setDataSizeXml(long dataSizeXml) {
+        this.dataSizeXml = dataSizeXml;
+    }
+
+    public long getDataSizeProtobuf() {
+        return dataSizeProtobuf;
+    }
+
+    public void setDataSizeProtobuf(long dataSizeProtobuf) {
+        this.dataSizeProtobuf = dataSizeProtobuf;
     }
 }

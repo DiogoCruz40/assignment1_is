@@ -4,10 +4,11 @@ import assignment1.helpers.TimeZoneAdaptor;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @XmlAccessorType (XmlAccessType.FIELD)
-public class Pet {
+public class Pet implements Serializable {
 
     //region Private Properties
 
