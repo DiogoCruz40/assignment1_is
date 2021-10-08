@@ -33,26 +33,17 @@ public class MarshallingXML {
         jaxbMarshaller.setProperty("com.sun.xml.bind.xmlHeaders",
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
-        //FOR TESTS
-//        Integer maxInteger = Integer.MAX_VALUE;
-//        System.out.println("Object type: " + maxInteger.getClass() +
-//                ", size: " + InstrumentationAgent.getObjectSize(maxInteger) + " bytes");
-
         // output to a xml file
         File result = new File(filepath);
         long start = System.nanoTime();
         jaxbMarshaller.marshal(data, result);
         long end = System.nanoTime();
         long size = Files.size(Paths.get(filepath));
-        logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: %d bytes", (double) (end - start) / 1_000_000_000, size));
+        logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: %d bytes", (double) (end - start) / 1_000_000, size));
 
         CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
         csvRowInfo.setXmlMarshallingTime(start, end);
         csvRowInfo.setBytesXmlFile(size);
-
-        // output to console
-        //jaxbMarshaller.marshal(data, System.out);
-
     }
     
     public Data unmarshal(String filepath) throws JAXBException {
@@ -63,7 +54,7 @@ public class MarshallingXML {
         long start = System.nanoTime();
         Data data = (Data) jaxbUnmarshaller.unmarshal(file);
         long end = System.nanoTime();
-        logger.info(String.format("jaxbMarshaller.unmarshal end.\nelapsedTime: %f ms\nsize: ", (double) (end - start) / 1_000_000_000));
+        logger.info(String.format("jaxbMarshaller.unmarshal end.\nelapsedTime: %f ms\nsize: ", (double) (end - start) / 1_000_000));
 
         CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
         csvRowInfo.setXmlUnmarshallingTime(start, end);
