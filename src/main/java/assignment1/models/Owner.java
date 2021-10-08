@@ -1,6 +1,6 @@
 package assignment1.models;
 
-import assignment1.TimeZoneAdaptor;
+import assignment1.helpers.TimeZoneAdaptor;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

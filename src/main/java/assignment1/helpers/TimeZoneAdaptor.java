@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1.helpers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.ZonedDateTime;

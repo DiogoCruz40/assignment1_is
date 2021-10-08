@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1.helpers;
 
 public class CsvRowInfo {
     private long seed;
@@ -6,6 +6,7 @@ public class CsvRowInfo {
     private int numPets;
     private double xmlMarshallingTime;
     private double xmlUnmarshallingTime;
+    private long bytes;
 
     public CsvRowInfo() {
     }
@@ -17,6 +18,7 @@ public class CsvRowInfo {
                 String.valueOf("numPets"),
                 String.valueOf("xmlMarshallingTime(ms)"),
                 String.valueOf("xmlUnmarshallingTime(ms)"),
+                String.valueOf("size(bytes)"),
         };
     }
 
@@ -27,6 +29,7 @@ public class CsvRowInfo {
                 String.valueOf(this.numPets),
                 String.valueOf(String.format("%.6f", this.xmlMarshallingTime)),
                 String.valueOf(String.format("%.6f", this.xmlUnmarshallingTime)),
+                String.valueOf(this.bytes),
         };
     }
 
@@ -68,5 +71,13 @@ public class CsvRowInfo {
 
     public void setXmlUnmarshallingTime(long start, long end) {
         this.xmlUnmarshallingTime = (double) (end - start) / 1_000_000_000;
+    }
+
+    public long getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(long bytes) {
+        this.bytes = bytes;
     }
 }

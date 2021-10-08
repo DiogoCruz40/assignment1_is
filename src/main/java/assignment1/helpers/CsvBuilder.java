@@ -1,4 +1,4 @@
-package assignment1;
+package assignment1.helpers;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package assignment1.xml;
 
-import assignment1.CsvRowInfo;
+import assignment1.helpers.CsvRowInfo;
 import assignment1.Program;
 import assignment1.models.Data;
 
@@ -10,6 +10,8 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public class MarshallingXML {
@@ -37,13 +39,16 @@ public class MarshallingXML {
 //                ", size: " + InstrumentationAgent.getObjectSize(maxInteger) + " bytes");
 
         // output to a xml file
+        File result = new File(filepath);
         long start = System.nanoTime();
-        jaxbMarshaller.marshal(data, new File(filepath));
+        jaxbMarshaller.marshal(data, result);
         long end = System.nanoTime();
-        logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: ", (double) (end - start) / 1_000_000_000));
+        long size = Files.size(Paths.get(filepath));
+        logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: %d bytes", (double) (end - start) / 1_000_000_000));
 
         CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
         csvRowInfo.setXmlMarshallingTime(start, end);
+        csvRowInfo.setBytes(size);
 
         // output to console
         //jaxbMarshaller.marshal(data, System.out);

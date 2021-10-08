@@ -1,0 +1,17 @@
+syntax = "proto2";
+import "google/protobuf/timestamp.proto";
+import "assignment1/protobuf/Pet.proto";
+import "assignment1/protobuf/Owner.proto";
+
+package protobuf;
+
+option java_multiple_files = true;
+option java_package = "assignment1.models.protobuf";
+option java_outer_classname = "DataProto";
+//protoc --java_out=../../ ./Data.proto
+
+message Data_proto {
+
+  repeated Owner_proto owners = 1;
+  repeated Pet_proto pets = 2;
+}

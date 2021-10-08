@@ -1,5 +1,7 @@
 package assignment1;
 
+import assignment1.helpers.CsvBuilder;
+import assignment1.helpers.CsvRowInfo;
 import assignment1.models.Data;
 import assignment1.models.Owner;
 import assignment1.models.Pet;
@@ -18,7 +20,6 @@ import java.util.Random;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class Program {
 
@@ -81,11 +82,21 @@ public class Program {
         data = new Data(new ArrayList<Owner>(), new ArrayList<Pet>());
         seed(r, numMaxOwners);
 
+        //region Xml
+
         String filepath = String.format("./data/%d.xml", seed);
 
         MarshallingXML xml = new MarshallingXML();
         xml.marshal(data, filepath);
         Data deserializedData = xml.unmarshal(filepath);
+
+        //endregion Xml
+
+        //region Protocol Buffers
+
+
+
+        //endregion Protocol Buffers
 
         CsvBuilder.addNewLine(csvRowInfo.getRowData());
     }
