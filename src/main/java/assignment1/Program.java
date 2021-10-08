@@ -2,6 +2,7 @@ package assignment1;
 
 import assignment1.helpers.CsvBuilder;
 import assignment1.helpers.CsvRowInfo;
+import assignment1.helpers.InstrumentationAgent;
 import assignment1.models.Data;
 import assignment1.models.Owner;
 import assignment1.models.Pet;
@@ -93,8 +94,8 @@ public class Program {
 
         MarshallingXML xml = new MarshallingXML();
         xml.marshal(data, filepath);
-       // printObjectSize(data);
-        Data deserializedData = xml.unmarshal(filepath);
+        //printObjectSize(data);
+        xml.unmarshal(filepath);
 
         //endregion Xml
 

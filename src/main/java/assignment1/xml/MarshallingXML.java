@@ -44,7 +44,7 @@ public class MarshallingXML {
         jaxbMarshaller.marshal(data, result);
         long end = System.nanoTime();
         long size = Files.size(Paths.get(filepath));
-        logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: %d bytes", (double) (end - start) / 1_000_000_000));
+        logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: %d bytes", (double) (end - start) / 1_000_000_000, size));
 
         CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
         csvRowInfo.setXmlMarshallingTime(start, end);
