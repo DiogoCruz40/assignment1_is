@@ -1,7 +1,5 @@
 syntax = "proto2";
 import "google/protobuf/timestamp.proto";
-import "assignment1/protobuf/Pet.proto";
-import "assignment1/protobuf/Owner.proto";
 
 package protobuf;
 
@@ -13,5 +11,26 @@ option java_outer_classname = "DataProto";
 message Data_proto {
 
   repeated Owner_proto owners = 1;
-  repeated Pet_proto pets = 2;
+
+message Owner_proto {
+  required int32  ownerId = 1;
+  required string name = 2;
+  optional google.protobuf.Timestamp birthdate = 3;
+  optional int32 telephone = 4;
+  optional string address = 5;
+  repeated Pet_proto pets = 6;
+
+  message Pet_proto {
+    required int32 petId = 1;
+    required Owner_proto owner = 2;
+    required string name = 3;
+    optional string gender = 4;
+    optional float weight = 5;
+    optional google.protobuf.Timestamp birthdate = 6;
+    optional string description = 7;
+  }
+}
+
+
+
 }
