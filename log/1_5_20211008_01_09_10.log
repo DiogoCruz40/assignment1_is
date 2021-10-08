@@ -1,0 +1,8 @@
+Oct 08, 2021 1:09:10 AM assignment1.Program main
+INFO: Program is stating...
+Oct 08, 2021 1:09:10 AM assignment1.xml.MarshallingXML marshal
+INFO: jaxbMarshaller.marshal end.
+elapsedTime: 0.016534 ms
+size: 
+Oct 08, 2021 1:09:10 AM assignment1.xml.MarshallingXML unmarshal
+INFO: jaxbMarshaller.marshal end. elapsedTime: 0.021739 ms

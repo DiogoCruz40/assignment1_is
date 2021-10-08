@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Data {
     //region Private Properties
 
