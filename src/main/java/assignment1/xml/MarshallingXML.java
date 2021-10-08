@@ -1,6 +1,7 @@
 package assignment1.xml;
 
-import assignment1.InstrumentationAgent;
+import assignment1.CsvRowInfo;
+import assignment1.Program;
 import assignment1.models.Data;
 
 import javax.xml.bind.JAXBContext;
@@ -8,6 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class MarshallingXML {
@@ -21,7 +23,7 @@ public class MarshallingXML {
         this.logger = Logger.getLogger(loggerName);
     }
 
-    public void marshal(Data data, String filepath) throws JAXBException {
+    public void marshal(Data data, String filepath) throws JAXBException, IOException {
         Marshaller jaxbMarshaller = this.jaxbContext.createMarshaller();
 
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -35,14 +37,17 @@ public class MarshallingXML {
 //                ", size: " + InstrumentationAgent.getObjectSize(maxInteger) + " bytes");
 
         // output to a xml file
-        //logger.info("jaxbMarshaller.marshal executing... ");
         long start = System.nanoTime();
         jaxbMarshaller.marshal(data, new File(filepath));
         long end = System.nanoTime();
         logger.info(String.format("jaxbMarshaller.marshal end.\nelapsedTime: %f ms\nsize: ", (double) (end - start) / 1_000_000_000));
 
+        CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
+        csvRowInfo.setXmlMarshallingTime(start, end);
+
         // output to console
         //jaxbMarshaller.marshal(data, System.out);
+
     }
     
     public Data unmarshal(String filepath) throws JAXBException {
@@ -50,12 +55,15 @@ public class MarshallingXML {
 
         File file = new File(filepath);
 
-        //logger.info("jaxbMarshaller.marshal executing... ");
         long start = System.nanoTime();
         Data data = (Data) jaxbUnmarshaller.unmarshal(file);
         long end = System.nanoTime();
         logger.info(String.format("jaxbMarshaller.unmarshal end.\nelapsedTime: %f ms\nsize: ", (double) (end - start) / 1_000_000_000));
 
+        CsvRowInfo csvRowInfo = Program.getCsvRowInfo();
+        csvRowInfo.setXmlUnmarshallingTime(start, end);
+
         return data;
     }
+
 }
