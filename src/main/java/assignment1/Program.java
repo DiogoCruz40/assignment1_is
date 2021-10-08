@@ -28,6 +28,11 @@ public class Program {
     private static final String loggerName = "ProgramLogger";
     private static CsvRowInfo csvRowInfo;
 
+    public static void printObjectSize(Object object) {
+        System.out.println("Object type: " + object.getClass() +
+                ", size: " + InstrumentationAgent.getObjectSize(object) + " bytes");
+    }
+
     public static void main(String[] args) throws IOException {
         try {
             //region Configure Logger And Results File
@@ -88,6 +93,7 @@ public class Program {
 
         MarshallingXML xml = new MarshallingXML();
         xml.marshal(data, filepath);
+       // printObjectSize(data);
         Data deserializedData = xml.unmarshal(filepath);
 
         //endregion Xml
